@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header id="header" th:fragment="layout-header(title)">
+
+		<nav class="navbar navbar-dark bg-dark custom-nav">
+			<div class="container-fluid">
+				<div class="row align-items-center w-100">
+					<div class="col-md-2 col-12 text-center text-md-start">
+						<a class="navbar-brand ms-3" th:href="@{/top}">Cytech EC.</a>
+					</div>
+					<div class="col-md-7 col-12 d-flex flex-column align-items-center" >
+						<form class="search-form" method="post" th:action="@{/productList}" th:object="${SearchForm}">
+							<!--検索フォーム(PC横並び、スマホは縦)-->
+							<div class="search-words me-2">
+								<input class="form-control custom-form"type="text" name="productName"/>
+							</div>
+							<div class="search-category">							
+								<select class="form-select custom-form me-2" name="categoryId">
+									<option value="" selected>カテゴリーを選択してください</option>
+									<option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}">カテゴリー検索</option>
+								</select>
+								<button class="btn btn-outline-light search-btn" type="submit">検索</button>
+						</div>
+						</form>
+					</div>
+					<div class="col-md-3 col-12 d-flex align-items-center user-section ">
+						<a th:href="@{/mypage}" class="btn btn-primary me-3 custom-btn">マイページ</a>
+						<div class="d-flex flex-column text-light">
+				 			<span class="me-2" >
+								<label class="no-wrap">ユーザー名：</label>
+								<span class="me-2" th:text="${session.loginUser.userName}"></span>
+							</span>
+							<a th:href="@{/logout}" class="text-light text-decoration-none">ログアウト</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('商品詳細画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h4 class="text-left mb-3" th:text="${title}">デフォルトタイトル</h4>
+
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-6 col-6 order-md-1 order-1">
+				<img th:src="${product.imgPath}" class="product">
+			</div>
+			<div class="col-md-6 col-6 order-md-2 order-2">
+				<div>
+					<div class="d-flex">
+						<label >商品名：</label>
+						<span th:text="${product.productName}"></span>
+					</div>
+					<div class="d-flex">
+						<label>メーカー名：</label>
+						<span th:text="${product.companyName}"></span>
+					</div>
+					<div class="d-flex">
+						<label>価格：</label>
+						<span th:text="|${product.price}円|"></span>
+					</div>
+					<div class="d-flex">
+						<label>税込み価格：</label>
+						<span th:text="|${product.taxPrice}円|"></span>
+					</div>
+					<div class="d-flex">
+						<label>在庫数：</label>
+						<span th:text="|${product.stock}個|"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div class="row mt-4">
+			<h5 class>口コミ</h5>
+   			 <div th:each="review, iterStat : ${reviews}" class="pb-2 mb-3">
+				<hr th:classappend="${iterStat.first} ? 'review-solid-line' : 'review-dashed-line'">
+					<div class="row">
+					<div class="col-md-6 col-12">
+						<label class="fw-bold">ユーザー名：</label>
+						<span th:text="${review.userName}"></span>
+					</div>
+					<div class="col-md-6 col-12">
+						<label class="fw-bold">投稿日：</label>
+						<span th:text="${review.createdAt}"></span>
+					</div>
+				</div>
+				<div class="d-flex">
+					<label class="fw-bold">コメント：</label>
+					<span th:text="${review.comment}"></span>
+				</div>
+				<div class="d-flex">
+					<label class="fw-bold">評価表示：</label >
+					<span th:utext="${'★'.repeat(review.rating)}"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-4 mb-3">
+			<div class="col-6">
+	    		<form th:action="@{/singleOrder}" method="get">
+	        		<input type="hidden" name="productId" th:value="${product.productId}" />
+	        		<button type="submit" class="btn btn-primary me-3 custom-btn">単品購入</button>
+	    		</form>
+			</div>
+			<div class="col-6">
+				<a th:href="@{/review/{productId}(productId=${product.productId})}" class="btn btn-primary me-3 custom-btn">口コミ投稿</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

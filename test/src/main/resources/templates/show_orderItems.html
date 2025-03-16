@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('購入完了画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+</head>
+<body>
+	<div class="container mt-4 mb-4">
+		<h2 class="text-left mb-4" th:text="${title}">デフォルトタイトル</h2>
+
+		<div class="d-flex justify-content-start gap-5">
+			<div class="d-flex flex-column w-50">
+				<div th:each="item : ${orderItems}">
+					<div class="d-flex mb-1"> 
+						<img th:src="@{${item.imgPath}}" alt="商品画像" class="product">
+					</div>
+					<div class="d-flex mb-1"> 
+						<label>商品名：</label>
+						<span th:text="${item.productName}"></span>
+					</div>
+					<div class="d-flex mb-1"> 
+						<label>数量：</label>
+						<span th:text="${item.quantity}"></span>
+					</div>
+					<div class="d-flex mb-1"> 
+						<label>税込価格：</label>
+						<span th:text="|${item.unitPrice}円|"></span>
+					</div>
+					<div class="d-flex mb-1"> 
+						<label>合計金額：</label>
+						<span th:text="|${item.price}円|"></span>
+					</div>
+				</div>
+				<div class="mt-2 border-top pt-2">
+					<div class="d-flex mb-1"> 
+						<label>住所：</label>
+						<span th:text="${order.user.userAddress}"></span>
+					</div>
+					<div class="d-flex mb-1"> 
+						<label>総合計金額：</label>
+						<span th:text="|${order.totalAmount}円|"></span>
+					</div>
+				</div>					
+			</div>
+			<div class="d-flex flex-column align-items-center justify-content-start w-50">
+				<h3 class="mb-3">注文完了</h3>
+				<div class="flex-grow-1"></div>
+				<a th:href="@{/top}" class="btn btn-primary">TOP画面に戻る </a>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

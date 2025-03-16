@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('MyPage画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container mt-4">
+		<h2 class="text-left mb-4" th:text="${title}">デフォルトタイトル</h2>
+		
+		<div class="d-flex mb-1" > 
+			<label>ユーザー名：</label>
+			<span th:text="${session.loginUser.userName}"></span>
+		</div>
+		<div class="d-flex mb-1" > 
+			<label>メールアドレス：</label>
+			<span th:text="${session.loginUser.email}"></span>
+		</div>
+		<div class="d-flex mb-3 mt-3"> 
+			<a th:href="@{/top}"  class="btn btn-primary me-3">TOP画面へ</a>
+		</div>
+</body>
+</html>

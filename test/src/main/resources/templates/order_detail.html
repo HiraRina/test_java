@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('購入品詳細画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container mt-4">
+		<h4 class="text-left mb-3" th:text="${title}">デフォルトタイトル</h4>
+	
+		<form method="post" th:action="@{/orderConfirm}">
+			<h5>＜受け取り場所＞</h5>
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="address" th:value="radio1" th:checked="${selectedRadio == 'radio1'}" />
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>名前:</label>
+						<span th:text="${session.loginUser.userName}"></span>
+					</div>
+					<div class="mt-2">
+						<label>住所:</label>
+						<input type="text" class="form-control" name="userAddress"  placeholder="住所" th:value="${addressInfo.hasDBAddress ? addressInfo.dbAddress : addressInfo.userAddress}" th:readonly="${addressInfo.hasDBAddress}" />
+					</div>
+					<div class="mt-2">					
+						<label>アパート名等:</label>
+						<input type="text" class="form-control" name="userApartment" placeholder="アパート名等" th:value="${addressInfo.hasDBAddress ? addressInfo.dbApartment : addressInfo.userApartment}" th:readonly="${addressInfo.hasDBAddress}" />
+					</div>
+				</div>
+			</div>
+				
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="address" th:value="radio2" th:checked="${selectedRadio == 'radio2'}" />
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>名前:</label>
+						<span th:text="${session.loginUser.userName}"></span>
+					</div>
+					<div class="mt-2">
+						<label>住所:</label>
+						<input type="text" class="form-control" name="newAddress2" placeholder="住所" th:value="${addressInfo.selectedRadio == 'radio2' ? addressInfo.userAddress : ''}" />
+					</div>
+					<div class="mt-2">
+						<label>アパート名等:</label>
+						<input type="text" class="form-control" name="newApartment2" placeholder="アパート名等" th:value="${addressInfo.selectedRadio == 'radio2' ? addressInfo.userApartment : ''}" />
+					</div>
+				</div>
+			</div>
+			
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="address" th:value="radio3" th:checked="${addressInfo.selectedRadio == 'radio3'}" />
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>名前:</label>
+						<span th:text="${session.loginUser.userName}"></span>
+					</div>
+					<div class="mt-2">
+						<label>住所:</label>
+						<input type="text" class="form-control" name="newAddress3" placeholder="住所" th:value="${addressInfo.selectedRadio == 'radio3' ? addressInfo.userAddress : ''} " />
+					</div>
+					<div class="mt-2">
+						<label>アパート名等:</label>
+						<input type="text" class="form-control" name="newApartment3" placeholder="アパート名等" th:value="${addressInfo.selectedRadio == 'radio3' ? addressInfo.userApartment : ''} " />
+					</div>
+				</div>
+			</div>
+		
+			<h5>＜お支払い情報＞</h5>
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="payment"/>
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>カード番号:</label>
+						<input class="form-control w-50" type="text" placeholder="カード番号" />
+						<input class="form-control mt-2 w-25" type="text" placeholder="有効期限 DD/YY" />
+					</div>
+				</div>
+			</div>
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="payment" />
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>カード番号:</label>
+						<input class="form-control w-50" type="text" placeholder="カード番号" />
+						<input class="form-control mt-2 w-25" type="text" placeholder="有効期限 DD/YY" />
+					</div>
+				</div>
+			</div>
+			<div class="form-check p-3 mb-3 d-flex align-items-start">
+				<input class="form-check-input mt-1 me-3" type="radio" name="payment" />
+				<div class="border rounded p-3 w-100">
+					<div class="mt-2">
+						<label>カード番号:</label>
+						<input class="form-control w-50" type="text" placeholder="カード番号" />
+						<input class="form-control mt-2 w-25" type="text" placeholder="有効期限 DD/YY" />
+					</div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary me-3 mb-3">確認</button>
+		</form>
+	</div>
+
+	</body>
+</body>
+</html>

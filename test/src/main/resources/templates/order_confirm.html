@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('購入品確認画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container mt-4">
+		<h2 class="text-left mb-4" th:text="${title}">デフォルトタイトル</h2>
+		
+		<div class="d-flex mb-1" > 
+			<label>名前：</label>
+			<span th:text="${session.loginUser.userName}"></span>
+		</div>
+		<div class="d-flex mb-1">
+			<label>住所：</label>
+			<span th:text="${session.selectedAddress}"></span>
+		</div>
+		<div class="d-flex mb-1">
+			<label>アパート名：</label>
+			<span th:text="${session.selectedApartment}"></span>
+		</div>
+		<div th:each="item, iterStat : ${session.orderItems}" class="dashed pb-2 mb-3">
+			<hr th:classappend ="${iterStat.first} ? 'solid-line' : 'dashed-line'">
+			<div class="d-flex mb-1">
+				<label>商品名：</label>
+				<span th:text="${item.product.productName}"></span>
+			</div>
+			<div class="d-flex mb-1">
+				<label>個数：</label>
+				<span th:text="${item.quantity}"></span>
+			</div>
+			<div class="d-flex mb-1">
+				<label>税込み金額：</label>
+				<span th:text="|${item.taxSubtotal}円|"></span>
+			</div>
+		</div>
+		<hr class="solid-line">
+		<div class="d-flex mb-1">
+			<label>購入品合計金額：</label>
+			<span th:text="|${session.totalTaxPrice}円|"></span>
+		</div>
+		<div class="d-flex mb-3 mt-3">
+			<form method="get" th:action="@{/orderDetail}">
+		    	<input type="hidden" name="selectedRadio" th:value="${selectedRadio}"/>
+		    	<button type="submit" class="btn btn-danger me-3">編集</button>
+			</form>
+			<form method="post" th:action="@{/orderItems}">
+				<button type="submit" class="btn btn-primary me-3">購入</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

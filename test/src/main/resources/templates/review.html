@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('口コミ投稿画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body th:object="${reviewForm}">
+	
+	<div class="container mt-4">
+		<h4 class="text-left mb-3" th:text="${title}">デフォルトタイトル</h4>
+		<form method="post" th:action="@{/addReview/{productId}(productId=${productId})}" enctype="multipart/form-data">
+			<div class="mb-3">
+				<label for="dummyUserName" class="form-label">ユーザー名(任意)</label>
+				<input type="text" class="form-control" id="dummyUserName" th:field="*{dummyUserName}" placeholder="ユーザー名" />
+				<div class="text-danger" th:if="${#fields.hasErrors('dummyUserName')}" th:errors="*{dummyUserName}"></div>
+			</div>
+			<div class="mb-3">
+				<label for="rating" class="form-label">評価</label>
+				<select id="rating" class="form-select w-auto" th:field="*{rating}">
+					<option th:each="i : ${#numbers.sequence(1,5)}"
+						th:value="${i}"
+						th:text="${i}">
+					</option>
+				</select>
+			</div>
+<!--			既にログインしており、メールアドレスは取得済なので一旦省略。-->
+<!--		<div class="mb-3">-->
+<!--			<label class="form-label">メールアドレス</label>-->
+<!--			<input type="email" class="form-control" id="email" th:field="*{email}" placeholder="メールアドレス" />-->
+<!--		</div>-->
+			<div class="mb-3">
+				<label class="form-label">コメント</label>
+				<textarea class="form-control" id="comment" th:field="*{comment}" rows="6" cols="50"></textarea>
+				<div class="text-danger" th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+			</div>
+			<div class="mb-3">
+				<input type="file" class="form-control" id="reviewImgPath" th:field="*{reviewImage}" accept="image/*"/>
+			</div>
+			<div class="text-center mb-3">
+				<button type="submit" class="btn btn-primary">投稿</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

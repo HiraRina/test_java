@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<aside id="sidebar" th:fragment="layout-sidebar">
+		<div th:if="${addCart}" class="border p-3 mb-3">
+			<form method="post" th:action="@{/addToCart}">
+				<div class="d-flex mb-2">
+					<button type="submit" class="btn btn-primary me-3 custom-btn">カートに入れる</button>
+				</div>		
+				<div class="d-flex mb-2">
+					<label for="quantity" class="fw-bold">数量：</label>
+					<select id="quantity" name="quantity">
+						<option th:each="i : ${#numbers.sequence(1,product.stock)}"
+							th:value="${i}"
+							th:text="${i}">
+						</option>
+					</select>
+				</div>		
+				<!--カートに表示するデータを送信-->
+				<input type="hidden" name="productId" th:value="${product.productId}">
+			</form>
+			<div class="d-flex mb-2">
+				<label class="fw-bold">価格：</label>
+				<span th:text="|${product.price}円|"></span>
+			</div>
+			<div class="d-flex mb-2">
+				<label class="fw-bold">税込価格：</label>
+				<span th:text="|${product.taxPrice}円|"></span>
+			</div>
+			<div class="d-flex mb-2">
+				<label class="fw-bold">在庫表示：</label>
+				<span th:text="|${product.stock}個|"></span>
+			</div>
+		</div>
+		
+		<div th:if="${cartDetail}" class="border p-3 mb-3 no-wrap">
+			<div class="d-flex mb-2">
+				<label class="fw-bold">個数：</label>
+				<span id="totalQuantity"th:text="|${totalquantity}個|"></span>
+			</div>
+			<div class="d-flex mb-2">
+				<label class="fw-bold">金額：</label>
+				<span id="totalPrice" th:text="|${totalPrice}円|"></span>
+			</div>
+			<div class="d-flex mb-2">
+				<label class="fw-bold">税込金額：</label>
+				<span id="totalTaxPrice" th:text="|${totalTaxPrice}円|"></span>
+			</div>
+			<div class="d-flex mb-2">
+			<a th:href="@{/cartOrder}" class="btn btn-primary me-3">レジに進む</a>
+			</div>
+		</div>
+	</aside>
+</body>
+</html>

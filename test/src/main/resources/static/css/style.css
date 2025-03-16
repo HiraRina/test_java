@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+.login-container {
+            max-width: 700px;
+            margin: 100px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+.no-wrap {
+	white-space: nowrap;
+}
+		
+/*ヘッダー*/
+
+.header-row{
+	width: 100%;
+}
+.custom-nav {
+    height: auto;
+	width: 100%;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-words {
+    display: flex;
+	justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin-right: 8px;
+}
+
+.search-category {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 500px;
+    justify-content: center;
+    gap: 8px;
+}
+
+.custom-btn {
+    height: 40px;
+	white-space: nowrap;
+	min-width: 80px;
+
+}
+
+.search-btn {
+	height: 40px;
+	white-space: nowrap;
+	min-width: 60px;
+}
+
+.user-section {
+	display: flex;
+	align-items: center;
+	text-align: left;
+	justify-content: center;
+}
+
+
+@media(max-width: 767px){
+	
+	.search-form {
+	flex-direction: column;
+	}
+
+	.search-words {
+		max-width: 100%;
+		margin-bottom: 8px
+	}
+
+	.search-category {
+		max-width: 100%;
+		justify-content: center;
+		margin-bottom: 8px;
+	}
+
+	.custom-form {
+    height: 40px;
+	width: 100%;
+	max-width: 400px;
+	}
+	
+}
+
+/*TOP画面*/
+
+.sale-header {
+	text-align: center;
+	background-color: #fdb813;
+	font-weight: bold;
+	margin-bottom: 20px; 
+	font-size: 22px;
+}
+
+.product {
+	width: 100%;
+    max-width: 450px;
+	aspect-ratio: 3/2;
+    object-fit: contain;
+	height: auto;
+}
+
+/*商品一覧画面*/
+.card-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/*商品詳細画面*/
+.review-solid-line {
+	border: none;
+	border-top: 1px solid ;
+	width: 100%;
+}
+
+.review-dashed-line {
+	border: none;
+	border-top: 1px dashed;
+	width: 80%;
+}
+
+
+/*購入品確認画面*/
+.solid-line {
+	border: none;
+	border-top: 1px solid ;
+	width: 60%;
+}
+
+.dashed-line {
+	border: none;
+	border-top: 1px dashed;
+	width: 50%;
+}
+ 

@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Node.js ###
+node_modules/
+package-lock.json
+
+# Spring Boot プロパティファイル（個別環境に依存するため管理対象外）
+src/main/resources/application.properties

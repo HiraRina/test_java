@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: layout('TOP画面', ~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container-fluid mt-4">
+		<h4 class="text-left mb-3" th:text="${title}">デフォルトタイトル</h4>
+		<div class="sale-header">セール品</div>
+		
+		<div th:if="${noSaleItemsMessage}" class="alert alert-warning">
+			<span th:text="${noSaleItemsMessage}"></span>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-md-3 col-sm-6 mb-3" th:each="saleItem:${saleItems}">
+				<a th:href="@{/productDetail/{productId}(productId=${saleItem.product.productId})}">
+					<img th:src="${saleItem.salesImgPath}" class="product" alt="セール商品">
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
